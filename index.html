@@ -1,25 +1,187 @@
-
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8"></meta>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+
     <title>FLAMES Game</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        body {
+
+            text-align: center;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        #result {
+
+            font-size: 20px;
+
+            margin-top: 20px;
+
+        }
+
+    </style>
+
+    <script>
+
+        function calculateFlames() {
+
+            var yourName = document.getElementById("yourName").value.toLowerCase();
+
+            var partnerName = document.getElementById("partnerName").value.toLowerCase();
+
+
+
+            // Remove spaces
+
+            yourName = yourName.replace(/\s/g, "");
+
+            partnerName = partnerName.replace(/\s/g, "");
+
+
+
+            // Calculate FLAMES
+
+            var commonLetters = 0;
+
+            for (var i = 0; i < yourName.length; i++) {
+
+                for (var j = 0; j < partnerName.length; j++) {
+
+                    if (yourName[i] === partnerName[j]) {
+
+                        commonLetters++;
+
+                        yourName = yourName.replace(yourName[i], "");
+
+                        partnerName = partnerName.replace(partnerName[j], "");
+
+                        i--;
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+
+
+            var totalLetters = yourName.length + partnerName.length;
+
+            var flames = "FLAMES";
+
+
+
+            while (flames.length > 1) {
+
+                var index = (commonLetters % flames.length) - 1;
+
+                if (index === -1) {
+
+                    index = flames.length - 1;
+
+                }
+
+                flames = flames.substring(0, index) + flames.substring(index + 1);
+
+            }
+
+
+
+            var result;
+
+            switch (flames) {
+
+                case "F":
+
+                    result = "Friends";
+
+                    break;
+
+                case "L":
+
+                    result = "Lovers";
+
+                    break;
+
+                case "A":
+
+                    result = "Affection";
+
+                    break;
+
+                case "M":
+
+                    result = "Marriage";
+
+                    break;
+
+                case "E":
+
+                    result = "Enemies";
+
+                    break;
+
+                case "S":
+
+                    result = "Siblings";
+
+                    break;
+
+                default:
+
+                    result = "Error";
+
+            }
+
+
+
+            document.getElementById("result").innerText = "Result: " + result;
+
+        }
+
+    </script>
+
 </head>
+
 <body>
-    <div class="container">
-        <h1>FLAMES Game</h1>
-        <label for="yourName">Your Name: </label>
-        <input id="yourName" placeholder="Your Name" type="text" />
 
-        <label for="partnerName">Partner's Name: </label>
-        <input id="partnerName" placeholder="Partner's Name" type="text" />
+    <h1>FLAMES Game</h1>
 
-        <button onclick="calculateFlames()">Calculate</button>
+    <label for="yourName">Your Name: </label>
 
-        <div id="result"></div>
-    </div>
-    <script src="script.js"></script>
+    <input id="yourName" placeholder="Your Name" type="text" />
+
+
+
+    <br /><br />
+
+
+
+    <label for="partnerName">Partner's Name: </label>
+
+    <input id="partnerName" placeholder="Partner's Name" type="text" />
+
+
+
+    <br /><br />
+
+
+
+    <button onclick="calculateFlames()">Calculate</button>
+
+
+
+    <div id="result"></div>
+
 </body>
+
 </html>

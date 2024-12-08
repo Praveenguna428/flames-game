@@ -25,4 +25,4 @@
         <li>Special thanks to the open-source community for providing tools and resources.</li>
     </ul></h3>
     
- <h2>click to Play the game: <a href="https://craftycodeverse.blogspot.com/2024/03/html-flames-code.html" target="_blank">FLAMES</a>.</p> </h2>
+ <h2>click to Play the game: <a href="https://praveenguna428.github.io/flames-game/" target="_blank">FLAMES</a>.</p> </h2>

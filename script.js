@@ -39,5 +39,47 @@ function calculateFlames() {
         "S": "Siblings"
     };
 
-    document.getElementById("result").innerText = "Result: " + resultMap[flames[0]];
+    const result = resultMap[flames[0]];
+    const resultElement = document.getElementById("result");
+
+    // Display Result
+    resultElement.innerText = "Result: " + result;
+
+    // Add Animation
+    resultElement.style.color = getRandomColor();
+    resultElement.style.animation = "pop 1s ease";
+
+    // Create Floating Effect
+    createFloatingElements(result);
+}
+
+// Generate Random Color
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Create Floating Elements
+function createFloatingElements(result) {
+    const body = document.body;
+    const floatingText = document.createElement("div");
+    floatingText.innerText = result;
+    floatingText.style.position = "absolute";
+    floatingText.style.color = getRandomColor();
+    floatingText.style.fontSize = "18px";
+    floatingText.style.top = Math.random() * window.innerHeight + "px";
+    floatingText.style.left = Math.random() * window.innerWidth + "px";
+    floatingText.style.opacity = 1;
+    floatingText.style.transition = "opacity 2s ease, transform 2s ease";
+    body.appendChild(floatingText);
+
+    setTimeout(() => {
+        floatingText.style.opacity = 0;
+        floatingText.style.transform = "translateY(-50px)";
+        setTimeout(() => floatingText.remove(), 2000);
+    }, 1000);
 }
